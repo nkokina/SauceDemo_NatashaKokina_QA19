@@ -4,6 +4,7 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import pages.BasketPage;
 import pages.ItemDetailsPage;
 
 
@@ -14,10 +15,12 @@ public class ItemDetailsTest extends BaseTest {
             " jacket capable of handling everything from a relaxing day outdoors to a busy day at the office.";
 
     ItemDetailsPage itemDetailsPage;
+    BasketPage basketPage;
 
     @BeforeClass
     public void initialise() {
         itemDetailsPage = new ItemDetailsPage(driver);
+        basketPage =new BasketPage(driver);
     }
 
     @Test
@@ -41,11 +44,11 @@ public class ItemDetailsTest extends BaseTest {
         productsPage.openItemByName(PRODUCT_NAME);
         itemDetailsPage.clickAddToCartButton();
         itemDetailsPage.clickingOnTheShoppingCart();
-        Assert.assertEquals(itemDetailsPage.getItemNameInBasket(), PRODUCT_NAME,
+        Assert.assertEquals(basketPage.getItemNameInBasket(), PRODUCT_NAME,
                 "The title of the book does not correspond");
-        Assert.assertEquals(itemDetailsPage.getItemPriceInBasket(), PRODUCT_PRICE,
+        Assert.assertEquals(basketPage.getItemPriceInBasket(), PRODUCT_PRICE,
                 "The price of the book does not correspond");
-        Assert.assertEquals(itemDetailsPage.getItemDescriptionInBasket(), PRODUCT_DESCRIPTION,
+        Assert.assertEquals(basketPage.getItemDescriptionInBasket(), PRODUCT_DESCRIPTION,
                 "The description of the book does not correspond");
 
     }

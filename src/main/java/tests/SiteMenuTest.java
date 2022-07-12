@@ -3,39 +3,40 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import pages.HomePage;
 import pages.ItemDetailsPage;
-import pages.MenuPage;
 
 
 public class SiteMenuTest extends BaseTest {
 
-    MenuPage menuPage;
+
     ItemDetailsPage itemDetailsPage;
+    HomePage homePage;
     @BeforeClass
     public void initialise() {
-        menuPage = new MenuPage(driver);
+        homePage = new HomePage(driver);
         itemDetailsPage=new ItemDetailsPage(driver);
     }
 
     @Test
     public void checkingTheSiteMenu() {
         loginPage.login("standard_user", "secret_sauce");
-        itemDetailsPage.clickingOnTheShoppingCart();
-        menuPage.clickMenuPage();
-        menuPage.clickAllItemsMenu();
+        homePage.clickingOnTheShoppingCart();
+        homePage.clickMenuPage();
+        homePage.clickAllItemsMenu();
         Assert.assertTrue(productsPage.isProductsPageHeaderDisplayed(), "Doesn't go to product page");
-        menuPage.clickMenuPage();
-        menuPage.clickLogoutMenu();
-        Assert.assertTrue(loginPage.isLoginPage(),
+        homePage.clickMenuPage();
+        homePage.clickLogoutMenu();
+        Assert.assertTrue(loginPage.isLoginPageDisplayed(),
                 "There was no transition to the registration page");
         loginPage.login("standard_user", "secret_sauce");
         itemDetailsPage.clickAddToCartButton();
-        menuPage.clickMenuPage();
-        menuPage.clickResetMenu();
-        Assert.assertTrue(itemDetailsPage.isRemoveButton(),
+        homePage.clickMenuPage();
+        homePage.clickResetMenu();
+        Assert.assertTrue(itemDetailsPage.isRemoveButtonDisplayed(),
                 "Reset app state, did not occur");
-        menuPage.clickAboutMenu();
-        Assert.assertTrue(menuPage.isAboutMenu(),
+        homePage.clickAboutMenu();
+        Assert.assertTrue( homePage.isAboutMenuDisplayed(),
                 "There was no transition to the site https://saucelabs.com");
     }
 }
