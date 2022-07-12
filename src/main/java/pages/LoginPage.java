@@ -5,11 +5,11 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends BasePage {
 
-    private By userNameInput = By.id("user-name");
-    private By passwordInput = By.id("password");
-    private By loginButton = By.id("login-button");
-    private By errorMessege = By.cssSelector(".error-message-container.error");
-    private By loginPage = By.cssSelector(".login_wrapper");
+    private final By userNameInput = By.id("user-name");
+    private final By passwordInput = By.id("password");
+    private final By loginButton = By.id("login-button");
+    private final By errorMessege = By.cssSelector(".error-message-container.error");
+    private final By loginPage = By.cssSelector(".login_wrapper");
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -39,7 +39,7 @@ public class LoginPage extends BasePage {
     public String getErrorMessageDisplayed(){
         return driver.findElement(errorMessege).getText();
     }
-    public boolean isLoginPage(){
+    public boolean isLoginPageDisplayed(){
         return  driver.findElement(loginPage).isDisplayed();
     }
 }
