@@ -9,8 +9,8 @@ public class LoginTests extends BaseTest {
     @Test
     public void positiveLoginTest() {
 
-        loginPage.setUserName("standard_user");
-        loginPage.setPassword("secret_sauce");
+        loginPage.setUserName(USERNAME);
+        loginPage.setPassword(PASSWORD);
         loginPage.clickLoginButton();
         Assert.assertTrue(productsPage.isProductsPageHeaderDisplayed());
     }
@@ -18,10 +18,10 @@ public class LoginTests extends BaseTest {
     @Test
     public void negativeLoginTest() {
         loginPage.setUserName("");
-        loginPage.setPassword("secret_sauce");
+        loginPage.setPassword(PASSWORD);
         loginPage.clickLoginButton();
         Assert.assertTrue(loginPage.isErrorMessageDisplayed());
-        Assert.assertEquals(loginPage.getErrorMessageDisplayed(), true,
+        Assert.assertEquals(loginPage.getErrorMessageDisplayed(), false,
                 "Epic sadface: UserName is required");
     }
 

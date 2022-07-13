@@ -9,13 +9,14 @@ public class ItemDetailsPage extends HomePage {
     private final By itemName = By.cssSelector(".inventory_details_name");
     private final By itemDescription = By.cssSelector(".inventory_details_desc");
     private final By itemPrice = By.cssSelector(".inventory_details_price");
-
-    private final By removeButton =  By.cssSelector("button[id^=remove-sauce-labs-backpack]");
+    private final By removeButton = By.cssSelector("button[id^=remove-sauce-labs-backpack]");
 
     public ItemDetailsPage(WebDriver driver) {
         super(driver);
     }
-    public boolean isRemoveButtonDisplayed (){
+
+
+    public boolean isRemoveButtonDisplayed() {
         return driver.findElement(removeButton).isDisplayed();
     }
 

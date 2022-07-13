@@ -20,12 +20,12 @@ public class ItemDetailsTest extends BaseTest {
     @BeforeClass
     public void initialise() {
         itemDetailsPage = new ItemDetailsPage(driver);
-        basketPage =new BasketPage(driver);
+        basketPage = new BasketPage(driver);
     }
 
     @Test
     public void verifyItemNameAndPriceOnDetailsPage() {
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(USERNAME, PASSWORD);
         productsPage.openItemByName(PRODUCT_NAME);
         Assert.assertEquals(itemDetailsPage.getItemName(), PRODUCT_NAME,
                 "The title of the book does not correspond");
@@ -33,17 +33,14 @@ public class ItemDetailsTest extends BaseTest {
                 "The price of the book does not correspond");
         Assert.assertEquals(itemDetailsPage.getItemDescription(), PRODUCT_DESCRIPTION,
                 "The description of the book does not correspond");
-        itemDetailsPage.clickAddToCartButton();
-        // navigate to cart page
-        // bla bla bla
-
     }
+
     @Test
     public void checkTheAddedItemInTheCart() {
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(USERNAME, PASSWORD);
         productsPage.openItemByName(PRODUCT_NAME);
         itemDetailsPage.clickAddToCartButton();
-        itemDetailsPage.clickingOnTheShoppingCart();
+        basketPage.clickingOnTheShoppingCart();
         Assert.assertEquals(basketPage.getItemNameInBasket(), PRODUCT_NAME,
                 "The title of the book does not correspond");
         Assert.assertEquals(basketPage.getItemPriceInBasket(), PRODUCT_PRICE,

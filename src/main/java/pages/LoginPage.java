@@ -33,13 +33,15 @@ public class LoginPage extends BasePage {
         driver.findElement(loginButton).click();
     }
 
-    public boolean isErrorMessageDisplayed(){
+    public boolean isErrorMessageDisplayed() {
         return driver.findElement(errorMessege).isDisplayed();
     }
-    public String getErrorMessageDisplayed(){
+
+    public String getErrorMessageDisplayed() {
         return driver.findElement(errorMessege).getText();
     }
-    public boolean isLoginPageDisplayed(){
-        return  driver.findElement(loginPage).isDisplayed();
+
+    public boolean isLoginPageDisplayed() {
+        return driver.findElement(loginPage).isDisplayed();
     }
 }
