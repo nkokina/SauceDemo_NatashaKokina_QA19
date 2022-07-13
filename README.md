@@ -18,5 +18,8 @@ Button click verification All Items Menu	Passed
 Button click verification Logout Menu 	Passed
 Button click verification Reset Menu	Passed
 Button click verification About Menu	Passed
+Checkout Checkout Page Passed
+Verification of user information input  Passed
+Error check if the user does not enter information  Passed
 
 
