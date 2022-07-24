@@ -10,10 +10,7 @@ import pages.ItemDetailsPage;
 
 
 public class ItemDetailsTest extends BaseTest {
-    final static String PRODUCT_NAME = "Sauce Labs Fleece Jacket";
-    final static String PRODUCT_PRICE = "$49.99";
-    final static String PRODUCT_DESCRIPTION = "It's not every day that you come across a midweight quarter-zip fleece" +
-            " jacket capable of handling everything from a relaxing day outdoors to a busy day at the office.";
+
 
     ItemDetailsPage itemDetailsPage;
     BasketPage basketPage;

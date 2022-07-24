@@ -9,8 +9,8 @@ public class CheckoutPage extends HomePage {
     private final By postalCodePage = By.id("postal-code");
     private final By continuePage = By.id("continue");
     private final By checkoutYourInformation = By.cssSelector(".page_wrapper");
-    private final By checkoutOverview = By.cssSelector(".checkout_summary_container");
-    private final By checkoutButton =  By.id("checkout");
+
+    private final By checkoutButton = By.id("checkout");
     private final By errorMessege = By.cssSelector(".error-message-container.error");
 
     public CheckoutPage(WebDriver driver) {
@@ -19,10 +19,6 @@ public class CheckoutPage extends HomePage {
 
     public boolean isCheckoutYourInformationDisplayed() {
         return driver.findElement(checkoutYourInformation).isDisplayed();
-    }
-
-    public boolean isCheckoutOverviewDisplayed() {
-        return driver.findElement(checkoutOverview).isDisplayed();
     }
 
     public void setFirstName(String firstName) {
@@ -40,6 +36,7 @@ public class CheckoutPage extends HomePage {
     public void clickContinueButton() {
         driver.findElement(continuePage).click();
     }
+
     public void clickCheckoutButton() {
         driver.findElement(checkoutButton).click();
     }

@@ -16,6 +16,12 @@ public class BaseTest {
 
     protected static String USERNAME = "standard_user";
     protected static String PASSWORD = "secret_sauce";
+    protected static String FIRSTNAME = "z";
+    protected static String LASTNAME = "a";
+    protected static String POSTALCODE = "123";
+    protected static String PRODUCT_NAME = "Sauce Labs Backpack";
+    protected static String PRODUCT_PRICE = "$29.99";
+    protected static String PRODUCT_DESCRIPTION = "carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.";
     protected WebDriver driver;
     protected LoginPage loginPage;
     protected ProductsPage productsPage;
