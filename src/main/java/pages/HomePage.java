@@ -4,6 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public abstract class HomePage extends BasePage {
+    protected final By footerCopy = By.cssSelector(".footer_copy");
+    protected final By socialTwitter = By.xpath("//*[@class='social_twitter']//ancestor::a[@href='https://twitter.com/saucelabs']");
+    protected final By socialLinkedin = By.xpath("//*[@class='social_linkedin']//ancestor::a[@href='https://www.facebook.com/saucelabs']");
+    protected final By socialFacebook = By.xpath("//*[@class='social_facebook']//ancestor::a[@href='https://www.linkedin.com/company/sauce-labs/']");
+
 
     protected By shoppingCart = By.cssSelector(".shopping_cart_link");
     protected By menuPage = By.cssSelector(".bm-burger-button");
@@ -14,6 +19,27 @@ public abstract class HomePage extends BasePage {
 
     public HomePage(WebDriver driver) {
         super(driver);
+    }
+
+    public String getFooterCopyText() {
+        return driver.findElement(footerCopy).getText();
+    }
+
+    public void clickTwitterInFooter() {
+        driver.findElement(socialTwitter).click();
+    }
+
+    public void clickFacebookInFooter() {
+        driver.findElement(socialFacebook).click();
+    }
+
+    public void clickLinkedinInFooter() {
+        driver.findElement(socialLinkedin).click();
+    }
+
+    public String getPageTransition() {
+        driver.switchTo().window("0");
+        return driver.getCurrentUrl();
     }
 
     public void clickMenuPage() {
