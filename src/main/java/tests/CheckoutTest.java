@@ -19,7 +19,7 @@ public class CheckoutTest extends BaseTest {
         itemDetailsPage = new ItemDetailsPage(driver);
     }
 
-    @Test
+    @Test(groups = "Smoke")
     public void positiveCheckoutTest() {
         loginPage.login(USERNAME, PASSWORD);
         itemDetailsPage.clickAddToCartButton();
@@ -32,7 +32,7 @@ public class CheckoutTest extends BaseTest {
 
     }
 
-    @Test
+    @Test(groups = {"Regression", "Negative"})
     public void negativeCheckoutEmptyLinesTest() {
         loginPage.login(USERNAME, PASSWORD);
         itemDetailsPage.clickAddToCartButton();

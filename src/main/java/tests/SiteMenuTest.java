@@ -19,7 +19,7 @@ public class SiteMenuTest extends BaseTest {
         basketPage = new BasketPage(driver);
     }
 
-    @Test
+    @Test(groups = "Regression")
     public void checkingTheSiteMenu() {
         loginPage.login("standard_user", "secret_sauce");
         basketPage.clickingOnTheShoppingCart();

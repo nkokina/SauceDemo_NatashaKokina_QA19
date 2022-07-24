@@ -4,9 +4,9 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
+import org.openqa.selenium.opera.OperaDriver;
+import org.testng.ITestContext;
+import org.testng.annotations.*;
 import pages.LoginPage;
 import pages.ProductsPage;
 
@@ -19,21 +19,26 @@ public class BaseTest {
     protected WebDriver driver;
     protected LoginPage loginPage;
     protected ProductsPage productsPage;
-
+    @Parameters({"browser"})
     @BeforeClass
-    public void setUp() {
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--headless");
-//        options.addArguments("--start-maximized");
-        driver = new ChromeDriver(options);
+        public void setUp(@Optional("chrome") String browserName, ITestContext testContext) throws Exception {
+            if (browserName.equals("chrome")) {
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+            } else if (browserName.equals("opera")) {
+                WebDriverManager.operadriver().setup();
+                driver = new OperaDriver();
+            } else {
+                throw new Exception("Undefined browser type");
+            }
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
 
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void openSauceDemo() {
         driver.get("https://www.saucedemo.com");
     }
