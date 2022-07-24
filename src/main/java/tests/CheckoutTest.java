@@ -3,20 +3,21 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.CheckoutOverviewPage;
 import pages.CheckoutPage;
 import pages.ItemDetailsPage;
 
 public class CheckoutTest extends BaseTest {
-    private final static String FIRSTNAME = "z";
-    private final static String LASTNAME = "a";
-    private final static String POSTALCODE = "123";
+
     CheckoutPage checkoutPage;
+    CheckoutOverviewPage checkoutOverviewPage;
     ItemDetailsPage itemDetailsPage;
 
     @BeforeMethod
     public void initialise() {
         checkoutPage = new CheckoutPage(driver);
         itemDetailsPage = new ItemDetailsPage(driver);
+        checkoutOverviewPage = new CheckoutOverviewPage(driver);
     }
 
     @Test
@@ -27,7 +28,7 @@ public class CheckoutTest extends BaseTest {
         Assert.assertTrue(checkoutPage.isCheckoutYourInformationDisplayed(),
                 "Doesn't navigate to the page (CHECKOUT: YOUR INFORMATION)");
         checkoutPage.continuePage(FIRSTNAME, LASTNAME, POSTALCODE);
-        Assert.assertTrue(checkoutPage.isCheckoutOverviewDisplayed(),
+        Assert.assertTrue(checkoutOverviewPage.isCheckoutOverviewDisplayed(),
                 "Doesn't navigate to the page (CHECKOUT: OVERVIEW)");
 
     }
@@ -44,4 +45,3 @@ public class CheckoutTest extends BaseTest {
 
     }
 }
-
