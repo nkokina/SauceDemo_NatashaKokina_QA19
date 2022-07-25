@@ -4,12 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ProductsPage extends HomePage {
     private final By productSort = By.cssSelector(".product_sort_container");
@@ -33,10 +30,6 @@ public class ProductsPage extends HomePage {
         return driver.findElement(productsPageHeader).isDisplayed();
     }
 
-    public void clickProductSortButton() {
-        driver.findElement(productSort).click();
-    }
-
     private WebElement getProductContainerByName(String productsName) {
         return driver.findElement(By.xpath(String.format(productContainerLocator, productsName)));
     }
@@ -46,69 +39,16 @@ public class ProductsPage extends HomePage {
         productContainer.findElement(productLink).click();
     }
 
-    public void sortAZ() {
+    public boolean sortProducts(String sortName) {
         List<WebElement> elementList = driver.findElements(nameProduct);
         Select select = new Select(driver.findElement(productSort));
-        select.selectByVisibleText("Name (A to Z)");
+        select.selectByVisibleText(sortName);
         List<String> obtainedList = new ArrayList<>();
         for (WebElement we : elementList) {
             obtainedList.add(we.getText());
         }
-        List<String> sortedList = obtainedList.stream().collect(Collectors.toList());
-        Assert.assertTrue(sortedList.equals(obtainedList), "AZ");
-    }
-
-
-    public void sortZA() {
-        List<WebElement> elementList = driver.findElements(nameProduct);
-        Select select = new Select(driver.findElement(productSort));
-        select.selectByVisibleText("Name (Z to A)");
-        List<String> obtainedList = new ArrayList<>();
-        for (WebElement we : elementList) {
-            obtainedList.add(we.getText());
-        }
-        List<String> sortedList = obtainedList.stream().collect(Collectors.toList());
-        Assert.assertTrue(sortedList.equals(obtainedList), "ZA");
-    }
-
-    public void sortLowToHigh() {
-        List<WebElement> elementList = driver.findElements(nameProduct);
-        Select select = new Select(driver.findElement(productSort));
-        select.selectByVisibleText("Price (low to high)");
-        List<String> obtainedList = new ArrayList<>();
-        for (WebElement we : elementList) {
-            obtainedList.add(we.getText());
-        }
-        List<String> sortedList = obtainedList.stream().collect(Collectors.toList());
-        Assert.assertTrue(sortedList.equals(obtainedList), "low to high");
-
-
-//        List<WebElement> elementList = driver.findElements(priceProduct);
-//        List<Double> doublesPrice = new ArrayList<>();
-//        for (WebElement p : elementList) {
-//            doublesPrice.add(Double.valueOf(p.getText().replace("$", "")));
-//        }
-//        Select dropDown = new Select(driver.findElement(productSort));
-//        dropDown.selectByVisibleText("Price (low to high)");
-//        List<WebElement> afterPrice = driver.findElements(priceProduct);
-//        List<Double> afterDoublePrice = new ArrayList<>();
-//        for (WebElement p : afterPrice) {
-//            afterDoublePrice.add(Double.valueOf(p.getText().replace("$", "")));
-//        }
-//        Collections.sort(doublesPrice);
-//        Assert.assertEquals(doublesPrice, afterDoublePrice);
-    }
-
-    public void sortHighToLow() {
-        List<WebElement> elementList = driver.findElements(nameProduct);
-        Select select = new Select(driver.findElement(productSort));
-        select.selectByVisibleText("Price (high to low)");
-        List<String> obtainedList = new ArrayList<>();
-        for (WebElement we : elementList) {
-            obtainedList.add(we.getText());
-        }
-        List<String> sortedList = obtainedList.stream().collect(Collectors.toList());
-        Assert.assertTrue(sortedList.equals(obtainedList), "high to low");
+        List<String> sortedList = obtainedList.stream().toList();
+        return sortedList.equals(obtainedList);
     }
 
     public boolean getProductName(String productsName) {

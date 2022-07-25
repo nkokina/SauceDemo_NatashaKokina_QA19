@@ -28,17 +28,17 @@ public class FooterTest extends BaseTest {
         loginPage.login("standard_user", "secret_sauce");
         itemDetailsPage.clickTwitterInFooter();
         Thread.sleep(8000);
-        Assert.assertEquals(itemDetailsPage.getPageTransition(), "https://twitter.com/saucelabs",
+        Assert.assertEquals(itemDetailsPage.getPageUrl(), "https://twitter.com/saucelabs",
                 "Transition link not working");
-        driver.navigate().back();
+        itemDetailsPage.getPageBack();
         itemDetailsPage.clickFacebookInFooter();
         Thread.sleep(8000);
-        Assert.assertEquals(itemDetailsPage.getPageTransition(), "https://www.facebook.com/saucelabs",
+        Assert.assertEquals(itemDetailsPage.getPageUrl(), "https://www.facebook.com/saucelabs",
                 "Transition link not working");
-        driver.navigate().back();
+        itemDetailsPage.getPageBack();
         itemDetailsPage.clickLinkedinInFooter();
         Thread.sleep(8000);
-        Assert.assertEquals(itemDetailsPage.getPageTransition(), "https://www.linkedin.com/authwall?trk=bf&trkInfo=AQEghd_pcL2S2QAAAYIWMBh4tLgUDz3gd4NocnErPqVydsVBZtMFvNf1eYCUu9k7yRswpNDcwaA8hSrJ7wIPHa8ftZcHv1QhTYE8JHtjPx9ajBdLT2hz0VnRv2iiDF2A93yRc6A=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Fsauce-labs%2F",
+        Assert.assertEquals(itemDetailsPage.getPageUrl(), "https://www.linkedin.com/authwall?trk=bf&trkInfo=AQEghd_pcL2S2QAAAYIWMBh4tLgUDz3gd4NocnErPqVydsVBZtMFvNf1eYCUu9k7yRswpNDcwaA8hSrJ7wIPHa8ftZcHv1QhTYE8JHtjPx9ajBdLT2hz0VnRv2iiDF2A93yRc6A=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Fsauce-labs%2F",
                 "Transition link not working");
     }
 }

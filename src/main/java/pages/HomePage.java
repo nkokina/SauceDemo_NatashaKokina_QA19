@@ -10,11 +10,6 @@ public abstract class HomePage extends BasePage {
     protected final By socialFacebook = By.xpath("//*[@class='social_facebook']//ancestor::a[@href='https://www.linkedin.com/company/sauce-labs/']");
 
 
-    protected By twitterInFooter = By.cssSelector(".social_twitter");
-
-    protected By facebookInFooter = By.cssSelector(".social_facebook");
-    protected By linkedinInFooter = By.cssSelector(".social_linkedin");
-    protected By footerCopyText = By.cssSelector(".footer_copy");
     protected By shoppingCart = By.cssSelector(".shopping_cart_link");
     protected By menuPage = By.cssSelector(".bm-burger-button");
     protected By allItemsMenu = By.id("inventory_sidebar_link");
@@ -42,9 +37,12 @@ public abstract class HomePage extends BasePage {
         driver.findElement(socialLinkedin).click();
     }
 
-    public String getPageTransition() {
-        driver.switchTo().window("0");
-        return driver.getCurrentUrl();      
+    public String getPageUrl() {
+        return driver.getCurrentUrl();
+    }
+
+    public void getPageBack() {
+        driver.navigate().back();
     }
 
     public void clickMenuPage() {
