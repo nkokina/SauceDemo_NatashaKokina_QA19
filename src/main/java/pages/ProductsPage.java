@@ -10,7 +10,8 @@ import java.util.List;
 
 public class ProductsPage extends HomePage {
     private final By productSort = By.cssSelector(".product_sort_container");
-    private final By nameProduct = By.cssSelector(".inventory_item_name");
+    private final By productNameSelector = By.cssSelector(".inventory_item_name");
+    private final By productPriceSelector = By.cssSelector(".inventory_item_price");
     private final By descriptionProduct = By.cssSelector(".inventory_item_description");
     private final By priceProduct = By.cssSelector(".inventory_item_price");
     private final By productLink = By.cssSelector("a[id$=_link]");
@@ -21,9 +22,14 @@ public class ProductsPage extends HomePage {
     private final String productContainerLocatorPrice
             = "//div[@class = 'inventory_item_price' and text() = '%s']/ancestor::div[@class='inventory_item']";
     private final By productsPageHeader = By.id("header_container");
+    private final By addToCartButton
+            = By.cssSelector("button[id^=add-to-cart]");
 
     public ProductsPage(WebDriver driver) {
         super(driver);
+    }
+    public void clickAddToCartButton() {
+        driver.findElement(addToCartButton).click();
     }
 
     public boolean isProductsPageHeaderDisplayed() {
@@ -39,21 +45,32 @@ public class ProductsPage extends HomePage {
         productContainer.findElement(productLink).click();
     }
 
-    public boolean sortProducts(String sortName) {
-        List<WebElement> elementList = driver.findElements(nameProduct);
+    public List<String> getListOfProductsName() {
+        List<WebElement> elementList = driver.findElements(productNameSelector);
+        List<String> result = new ArrayList<>();
+        for (WebElement element: elementList) {
+            result.add(element.getText());
+        }
+        return result;
+    }
+
+    public List<Double> getListOfProductsPrice() {
+        List<WebElement> elementList = driver.findElements(productPriceSelector);
+        List<Double> result = new ArrayList<>();
+        for (WebElement element: elementList) {
+            result.add(Double.valueOf(element.getText().replace("$", "")));
+        }
+        return result;
+    }
+
+    public void selectSort(String sortName){
         Select select = new Select(driver.findElement(productSort));
         select.selectByVisibleText(sortName);
-        List<String> obtainedList = new ArrayList<>();
-        for (WebElement we : elementList) {
-            obtainedList.add(we.getText());
-        }
-        List<String> sortedList = obtainedList.stream().toList();
-        return sortedList.equals(obtainedList);
     }
 
     public boolean getProductName(String productsName) {
         WebElement productContainer = getProductContainerByName(productsName);
-        return productContainer.findElement(nameProduct).isDisplayed();
+        return productContainer.findElement(productNameSelector).isDisplayed();
     }
 
     private WebElement getProductContainerByDescription(String productsDescription) {

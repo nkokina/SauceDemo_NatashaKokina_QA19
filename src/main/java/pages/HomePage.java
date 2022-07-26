@@ -3,19 +3,21 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import java.util.ArrayList;
+
 public abstract class HomePage extends BasePage {
     protected final By footerCopy = By.cssSelector(".footer_copy");
     protected final By socialTwitter = By.xpath("//*[@class='social_twitter']//ancestor::a[@href='https://twitter.com/saucelabs']");
-    protected final By socialLinkedin = By.xpath("//*[@class='social_linkedin']//ancestor::a[@href='https://www.facebook.com/saucelabs']");
-    protected final By socialFacebook = By.xpath("//*[@class='social_facebook']//ancestor::a[@href='https://www.linkedin.com/company/sauce-labs/']");
-
-
+    protected final By socialFacebook = By.xpath("//*[@class='social_facebook']//ancestor::a[@href='https://www.facebook.com/saucelabs']");
+    protected final By socialLinkedin = By.xpath("//*[@class='social_linkedin']//ancestor::a[@href='https://www.linkedin.com/company/sauce-labs/']");
     protected By shoppingCart = By.cssSelector(".shopping_cart_link");
     protected By menuPage = By.cssSelector(".bm-burger-button");
     protected By allItemsMenu = By.id("inventory_sidebar_link");
     protected By aboutMenu = By.id("about_sidebar_link");
     protected By logoutMenu = By.id("logout_sidebar_link");
     protected By resetMenu = By.id("reset_sidebar_link");
+
+    private final int currentTabIndex = 0;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -38,11 +40,19 @@ public abstract class HomePage extends BasePage {
     }
 
     public String getPageUrl() {
+        getLastPage();
         return driver.getCurrentUrl();
+
     }
 
-    public void getPageBack() {
-        driver.navigate().back();
+    private void getLastPage() {
+        ArrayList<String> handles = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(handles.get(handles.size() - 1));
+    }
+
+    public void closeLastPage() {
+        driver.close();
+        getLastPage();
     }
 
     public void clickMenuPage() {

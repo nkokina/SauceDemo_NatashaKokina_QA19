@@ -6,9 +6,7 @@ import org.testng.annotations.Test;
 
 public class LoginTests extends BaseTest {
 
-
-    @Test(description = "Test", invocationCount = 3, threadPoolSize = 3, groups = {"Smoke"})
-    //описание теста,  enabled = false тест не будет запускаться,priority=0 0-НЕНУЖНОзапускается первым, количесов тестов запуск, сколько потоков запускается одновременно
+    @Test(description = "Test", groups = {"Smoke"})
     public void positiveLogin() {
         loginPage.setUserName(USERNAME);
         loginPage.setPassword(PASSWORD);
@@ -16,7 +14,7 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(productsPage.isProductsPageHeaderDisplayed());
     }
 
-    @Test(groups = {"Regression", "Negative"}, dataProvider = " negativeLoginTestData")
+    @Test(groups = {"Regression", "Negative"}, dataProvider = "negativeLoginTestData")
     public void negativeLoginTest(String userName, String Password, String expectedErrorMessage) {
         loginPage.setUserName(userName);
         loginPage.setPassword(Password);
@@ -34,5 +32,4 @@ public class LoginTests extends BaseTest {
                 {"", "", ""},
         };
     }
-
 }

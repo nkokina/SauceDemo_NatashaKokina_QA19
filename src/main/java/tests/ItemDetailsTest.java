@@ -1,6 +1,5 @@
 package tests;
 
-
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -11,17 +10,16 @@ import pages.ItemDetailsPage;
 
 public class ItemDetailsTest extends BaseTest {
 
-
     ItemDetailsPage itemDetailsPage;
     BasketPage basketPage;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void initialise() {
         itemDetailsPage = new ItemDetailsPage(driver);
         basketPage = new BasketPage(driver);
     }
 
-    @Test(groups = "Smoke")
+    @Test(groups = {"Smoke"})
     public void verifyItemNameAndPriceOnDetailsPage() {
         loginPage.login(USERNAME, PASSWORD);
         productsPage.openItemByName(PRODUCT_NAME);
@@ -33,11 +31,11 @@ public class ItemDetailsTest extends BaseTest {
                 "The description of the book does not correspond");
     }
 
-    @Test(groups = "Smoke")
+    @Test(groups = {"Smoke"})
     public void checkTheAddedItemInTheCart() {
         loginPage.login(USERNAME, PASSWORD);
         productsPage.openItemByName(PRODUCT_NAME);
-        itemDetailsPage.clickAddToCartButton();
+        productsPage.clickAddToCartButton();
         basketPage.clickingOnTheShoppingCart();
         Assert.assertEquals(basketPage.getItemNameInBasket(), PRODUCT_NAME,
                 "The title of the book does not correspond");
@@ -48,7 +46,7 @@ public class ItemDetailsTest extends BaseTest {
 
     }
 
-    @Test(groups = "Smoke", dataProvider = "inventoryItemsTestData")
+    @Test(groups = {"Smoke"}, dataProvider = "inventoryItemsTestData")
     public void inventoryItemsTest(String nameItem, String descriptionItem, String priceItem) {
         loginPage.login(USERNAME, PASSWORD);
         Assert.assertTrue(productsPage.getProductName(nameItem), "Product name is wrong");

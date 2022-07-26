@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 import pages.CheckoutCompletePage;
 import pages.CheckoutOverviewPage;
 import pages.CheckoutPage;
-import pages.ItemDetailsPage;
 
 public class CheckoutCompleteTest extends BaseTest {
 
@@ -16,43 +15,38 @@ public class CheckoutCompleteTest extends BaseTest {
 
     CheckoutPage checkoutPage;
     CheckoutOverviewPage checkoutOverviewPage;
-    ItemDetailsPage itemDetailsPage;
     CheckoutCompletePage checkoutCompletePage;
 
-    @BeforeMethod
+    @BeforeMethod (alwaysRun = true)
     public void initialise() {
         checkoutPage = new CheckoutPage(driver);
-        itemDetailsPage = new ItemDetailsPage(driver);
         checkoutOverviewPage = new CheckoutOverviewPage(driver);
         checkoutCompletePage = new CheckoutCompletePage(driver);
     }
 
-    @Test
+    @Test (groups = {"Regression"})
     public void conformityOfTheGoodsInTheOrderTest() {
         loginPage.login(USERNAME, PASSWORD);
-        itemDetailsPage.clickAddToCartButton();
+        productsPage.clickAddToCartButton();
         checkoutPage.clickingOnTheShoppingCart();
-        checkoutPage.continuePage(FIRSTNAME, LASTNAME, POSTALCODE);
+        checkoutPage.continuePage(FIRSTNAME, LASTNAME, POSTAL_CODE);
         checkoutOverviewPage.clickFinishButton();
         Assert.assertEquals(checkoutCompletePage.getCompleteHeader(), COMPLETE_HEADER,
                 "The text is incorrect");
         Assert.assertEquals(checkoutCompletePage.getCompleteText(), COMPLETE_TEXT,
                 "The text is incorrect");
-
     }
 
-    @Test
+    @Test (groups = {"Regression"})
     public void goToProductPageTest() {
         loginPage.login(USERNAME, PASSWORD);
-        itemDetailsPage.clickAddToCartButton();
+        productsPage.clickAddToCartButton();
         checkoutPage.clickingOnTheShoppingCart();
-        checkoutPage.continuePage(FIRSTNAME, LASTNAME, POSTALCODE);
+        checkoutPage.continuePage(FIRSTNAME, LASTNAME, POSTAL_CODE);
         checkoutOverviewPage.clickFinishButton();
         checkoutCompletePage.clickBackHomeButton();
         Assert.assertTrue(productsPage.isProductsPageHeaderDisplayed(),
                 "Doesn't go to product page");
-
-
     }
 
 }
