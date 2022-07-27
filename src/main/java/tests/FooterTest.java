@@ -27,19 +27,19 @@ public class FooterTest extends BaseTest {
     public void CheckingLinksFooter()  {
         loginPage.login("standard_user", "secret_sauce");
         itemDetailsPage.clickTwitterInFooter();
-        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         Assert.assertEquals(itemDetailsPage.getPageUrl(), "https://twitter.com/saucelabs",
                 "Transition twitter link not working");
         itemDetailsPage.timeOuts();
         itemDetailsPage.closeLastPage();
         itemDetailsPage.clickFacebookInFooter();
-        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         Assert.assertEquals(itemDetailsPage.getPageUrl(), "https://www.facebook.com/saucelabs",
                 "Transition facebook link not working");
         itemDetailsPage.timeOuts();
         itemDetailsPage.closeLastPage();
         itemDetailsPage.clickLinkedinInFooter();
-        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         Assert.assertEquals(itemDetailsPage.getPageUrl(), "https://www.linkedin.com/",
                 "Transition linkedin link not working");
     }
