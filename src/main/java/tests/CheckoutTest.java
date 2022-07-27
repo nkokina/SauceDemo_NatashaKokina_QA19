@@ -20,7 +20,7 @@ public class CheckoutTest extends BaseTest {
     @Test(groups = {"Smoke"})
     public void positiveCheckoutTest() {
         loginPage.login(USERNAME, PASSWORD);
-        productsPage.clickAddToCartButton();
+        productsPage.clickAddToCartButton(PRODUCT_NAME);
         checkoutPage.clickingOnTheShoppingCart();
         Assert.assertTrue(checkoutPage.isCheckoutYourInformationDisplayed(),
                 "Doesn't navigate to the page (CHECKOUT: YOUR INFORMATION)");
@@ -33,7 +33,7 @@ public class CheckoutTest extends BaseTest {
     @Test(groups = {"Regression", "Negative"})
     public void negativeCheckoutEmptyLinesTest() {
         loginPage.login(USERNAME, PASSWORD);
-        productsPage.clickAddToCartButton();
+        productsPage.clickAddToCartButton(PRODUCT_NAME);
         checkoutPage.clickingOnTheShoppingCart();
         checkoutPage.continuePage("", "", "");
         Assert.assertTrue(checkoutPage.isErrorMessageDisplayed(), "Error message is not displayed");

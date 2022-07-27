@@ -30,7 +30,7 @@ public class SiteMenuTest extends BaseTest {
         Assert.assertTrue(loginPage.isLoginPageDisplayed(),
                 "There was no transition to the registration page");
         loginPage.login("standard_user", "secret_sauce");
-       productsPage.clickAddToCartButton();
+       productsPage.clickAddToCartButton(PRODUCT_NAME);
         basketPage.clickMenuPage();
         basketPage.clickResetMenu();
         Assert.assertTrue(itemDetailsPage.isRemoveButtonDisplayed(),

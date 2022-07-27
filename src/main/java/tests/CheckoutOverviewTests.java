@@ -26,7 +26,7 @@ public class CheckoutOverviewTests extends BaseTest {
     @Test(groups = {"Regression"})
     public void conformityOfTheGoodsInTheOrderTest() {
         loginPage.login(USERNAME, PASSWORD);
-        productsPage.clickAddToCartButton();
+        productsPage.clickAddToCartButton(PRODUCT_NAME);
         checkoutPage.clickingOnTheShoppingCart();
         checkoutPage.continuePage(FIRSTNAME, LASTNAME, POSTAL_CODE);
         Assert.assertEquals(checkoutOverviewPage.getItemNameInCheckout(), PRODUCT_NAME,
@@ -40,7 +40,7 @@ public class CheckoutOverviewTests extends BaseTest {
     @Test (groups = {"Regression"})
     public void totalAmountInTheOrderTest() {
         loginPage.login(USERNAME, PASSWORD);
-        productsPage.clickAddToCartButton();
+        productsPage.clickAddToCartButton(PRODUCT_NAME);
         checkoutPage.clickingOnTheShoppingCart();
         checkoutPage.continuePage(FIRSTNAME, LASTNAME, POSTAL_CODE);
         Assert.assertEquals(checkoutOverviewPage.getSummarySubtotalLabel(),
@@ -54,7 +54,7 @@ public class CheckoutOverviewTests extends BaseTest {
     @Test (groups = {"Smoke"})
     public void gToEndPageTest() {
         loginPage.login(USERNAME, PASSWORD);
-        productsPage.clickAddToCartButton();
+        productsPage.clickAddToCartButton(PRODUCT_NAME);
         checkoutPage.clickingOnTheShoppingCart();
         checkoutPage.continuePage(FIRSTNAME, LASTNAME, POSTAL_CODE);
         checkoutOverviewPage.clickFinishButton();

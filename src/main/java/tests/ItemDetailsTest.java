@@ -35,7 +35,7 @@ public class ItemDetailsTest extends BaseTest {
     public void checkTheAddedItemInTheCart() {
         loginPage.login(USERNAME, PASSWORD);
         productsPage.openItemByName(PRODUCT_NAME);
-        productsPage.clickAddToCartButton();
+        productsPage.clickAddToCartButton(PRODUCT_NAME);
         basketPage.clickingOnTheShoppingCart();
         Assert.assertEquals(basketPage.getItemNameInBasket(), PRODUCT_NAME,
                 "The title of the book does not correspond");

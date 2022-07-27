@@ -27,7 +27,7 @@ public class CheckoutCompleteTest extends BaseTest {
     @Test (groups = {"Regression"})
     public void conformityOfTheGoodsInTheOrderTest() {
         loginPage.login(USERNAME, PASSWORD);
-        productsPage.clickAddToCartButton();
+        productsPage.clickAddToCartButton(PRODUCT_NAME);
         checkoutPage.clickingOnTheShoppingCart();
         checkoutPage.continuePage(FIRSTNAME, LASTNAME, POSTAL_CODE);
         checkoutOverviewPage.clickFinishButton();
@@ -40,7 +40,7 @@ public class CheckoutCompleteTest extends BaseTest {
     @Test (groups = {"Regression"})
     public void goToProductPageTest() {
         loginPage.login(USERNAME, PASSWORD);
-        productsPage.clickAddToCartButton();
+        productsPage.clickAddToCartButton(PRODUCT_NAME);
         checkoutPage.clickingOnTheShoppingCart();
         checkoutPage.continuePage(FIRSTNAME, LASTNAME, POSTAL_CODE);
         checkoutOverviewPage.clickFinishButton();

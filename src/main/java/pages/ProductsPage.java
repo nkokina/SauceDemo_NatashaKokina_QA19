@@ -28,8 +28,9 @@ public class ProductsPage extends HomePage {
     public ProductsPage(WebDriver driver) {
         super(driver);
     }
-    public void clickAddToCartButton() {
-        driver.findElement(addToCartButton).click();
+    public void clickAddToCartButton(String productsName) {
+        WebElement productContainer = getProductContainerByName(productsName);
+        productContainer.findElement(addToCartButton).click();
     }
 
     public boolean isProductsPageHeaderDisplayed() {
