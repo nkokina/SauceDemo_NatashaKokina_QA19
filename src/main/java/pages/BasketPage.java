@@ -15,7 +15,6 @@ public class BasketPage extends HomePage {
     public String getItemNameInBasket() {
         return driver.findElement(itemNameInBasket).getText();
     }
-
     public String getItemDescriptionInBasket() {
         return driver.findElement(itemDescriptionInBasket).getText();
     }
