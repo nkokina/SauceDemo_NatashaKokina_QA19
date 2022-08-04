@@ -27,9 +27,9 @@ public class LoginTests extends BaseTest {
     @DataProvider
     public Object[][] negativeLoginTestData() {
         return new Object[][]{
-                {"", PASSWORD, "Epicsadf"},
-                {USERNAME, "", "Epic sadface"},
-                {"", "", ""},
+                {"", PASSWORD, "UserName not filled"},
+                {USERNAME, "", "Password not filled"},
+                {"", "", "Fields are empty"},
         };
     }
 }

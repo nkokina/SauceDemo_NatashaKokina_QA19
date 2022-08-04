@@ -36,7 +36,7 @@ public class SiteMenuTest extends BaseTest {
         Assert.assertTrue(itemDetailsPage.isRemoveButtonDisplayed(),
                 "Reset app state, did not occur");
         basketPage.clickAboutMenu();
-        Assert.assertEquals(basketPage.isAboutMenuDisplayed(), "https://saucelabs.com",
+        Assert.assertEquals(itemDetailsPage.getPageUrl(), "https://saucelabs.com/",
                 "There was no transition to the site https://saucelabs.com");
     }
 }

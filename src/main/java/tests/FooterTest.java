@@ -4,7 +4,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.ItemDetailsPage;
-import java.util.concurrent.TimeUnit;
 
 public class FooterTest extends BaseTest {
 
@@ -27,20 +26,17 @@ public class FooterTest extends BaseTest {
     public void CheckingLinksFooter()  {
         loginPage.login("standard_user", "secret_sauce");
         itemDetailsPage.clickTwitterInFooter();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        itemDetailsPage.waitForPageLoaded();
         Assert.assertEquals(itemDetailsPage.getPageUrl(), "https://twitter.com/saucelabs",
                 "Transition twitter link not working");
-        itemDetailsPage.timeOuts();
         itemDetailsPage.closeLastPage();
         itemDetailsPage.clickFacebookInFooter();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        itemDetailsPage.waitForPageLoaded();
         Assert.assertEquals(itemDetailsPage.getPageUrl(), "https://www.facebook.com/saucelabs",
                 "Transition facebook link not working");
-        itemDetailsPage.timeOuts();
         itemDetailsPage.closeLastPage();
         itemDetailsPage.clickLinkedinInFooter();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        Assert.assertEquals(itemDetailsPage.getPageUrl(), "https://www.linkedin.com/",
+        Assert.assertEquals(itemDetailsPage.getPageUrl(), "https://www.linkedin.com/company/sauce-labs/",
                 "Transition linkedin link not working");
     }
 }

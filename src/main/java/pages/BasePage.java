@@ -1,18 +1,15 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
-
-import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class BasePage {
     protected WebDriver driver;
-
+protected WebDriverWait wait;
     public BasePage(WebDriver driver) {
-        this.driver = driver;
-    }
 
-    public void timeOuts() {
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        this.driver = driver;
+        wait = new WebDriverWait(driver, 50);
     }
 
 }

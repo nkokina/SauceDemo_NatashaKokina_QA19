@@ -18,12 +18,13 @@ public class ProductsPage extends HomePage {
     private final String productContainerLocator
             = "//div[@class = 'inventory_item_name' and text() = '%s']/ancestor::div[@class='inventory_item']";
     private final String productContainerLocatorDescription
-            = "//div[@class = 'inventory_item_desc' and text() = '%s']/ancestor::div[@class='inventory_item']";
+           = "//div[@class = 'inventory_item_desc' and contains(text(),'%s')]/ancestor::div[@class='inventory_item']";
     private final String productContainerLocatorPrice
             = "//div[@class = 'inventory_item_price' and text() = '%s']/ancestor::div[@class='inventory_item']";
     private final By productsPageHeader = By.id("header_container");
     private final By addToCartButton
             = By.cssSelector("button[id^=add-to-cart]");
+
 
     public ProductsPage(WebDriver driver) {
         super(driver);

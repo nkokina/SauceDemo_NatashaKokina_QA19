@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
 
@@ -17,24 +18,18 @@ public abstract class HomePage extends BasePage {
     protected By logoutMenu = By.id("logout_sidebar_link");
     protected By resetMenu = By.id("reset_sidebar_link");
 
-    private final int currentTabIndex = 0;
-
     public HomePage(WebDriver driver) {
         super(driver);
     }
-
     public String getFooterCopyText() {
         return driver.findElement(footerCopy).getText();
     }
-
     public void clickTwitterInFooter() {
         driver.findElement(socialTwitter).click();
     }
-
     public void clickFacebookInFooter() {
         driver.findElement(socialFacebook).click();
     }
-
     public void clickLinkedinInFooter() {
         driver.findElement(socialLinkedin).click();
     }
@@ -42,17 +37,15 @@ public abstract class HomePage extends BasePage {
     public String getPageUrl() {
         getLastPage();
         return driver.getCurrentUrl();
-
     }
 
     private void getLastPage() {
         ArrayList<String> handles = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(handles.get(handles.size() - 1));
     }
-
     public void closeLastPage() {
         driver.close();
-        getLastPage();
+       getLastPage();
     }
 
     public void clickMenuPage() {
@@ -76,11 +69,16 @@ public abstract class HomePage extends BasePage {
     }
 
     public boolean isAboutMenuDisplayed() {
-        return !driver.getCurrentUrl().isEmpty();
+        return driver.getCurrentUrl().isEmpty();
     }
 
     public void clickingOnTheShoppingCart() {
         driver.findElement(shoppingCart).click();
+    }
+
+
+    public void waitForPageLoaded(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("html")));
     }
 
 }

@@ -17,22 +17,21 @@
         <seleniumJavaVersion>3.141.59</seleniumJavaVersion>
         <testNgVersion>7.6.0</testNgVersion>
         <webdrivermanagerVersion>5.2.0</webdrivermanagerVersion>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${seleniumJavaVersion}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testNgVersion}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
@@ -48,6 +47,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M4</version>
                 <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                     <systemProperties>
                         <browser>chrome</browser>
                     </systemProperties>

@@ -4,6 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.opera.OperaDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
@@ -12,7 +13,7 @@ import pages.ProductsPage;
 
 import java.util.concurrent.TimeUnit;
 
-@Listeners({TestListener.class})
+@Listeners(TestListener.class)
 public class BaseTest {
     protected static String USERNAME = "standard_user";
     protected static String PASSWORD = "secret_sauce";
@@ -27,17 +28,19 @@ public class BaseTest {
     protected ProductsPage productsPage;
 
     @BeforeClass(alwaysRun = true)
-        public void setUp(ITestContext testContext) throws Exception {
-        String browserName=System.getProperty("browser");
-                if (browserName.equals("chrome")) {
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
-            } else if (browserName.equals("opera")) {
-                WebDriverManager.operadriver().setup();
-                driver = new OperaDriver();
-            } else {
-                throw new Exception("Undefined browser type");
-            }
+    public void setUp(ITestContext testContext) throws Exception {
+        String browserName = System.getProperty("browser", "chrome");
+        if (browserName.equals("chrome")) {
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
+            ChromeOptions option = new ChromeOptions();
+            option.addArguments("--headless");
+        } else if (browserName.equals("opera")) {
+            WebDriverManager.operadriver().setup();
+            driver = new OperaDriver();
+        } else {
+            throw new Exception("Undefined browser type");
+        }
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         loginPage = new LoginPage(driver);

@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 import pages.CheckoutCompletePage;
 import pages.CheckoutOverviewPage;
 import pages.CheckoutPage;
-import pages.ItemDetailsPage;
 
 public class CheckoutOverviewTests extends BaseTest {
     private final String SUMMARY_TEX_LABEL = "Tax: $2.40";
