@@ -16,32 +16,30 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
+    @Step("setting userName = {standard_user},setting password = {secret_sauce},click Login Button")
     public void login(String userName, String password) {
         setUserName(userName);
         setPassword(password);
         clickLoginButton();
     }
-@Step("setUserName")
+    @Step("setting userName = {standard_user}")
     public void setUserName(String userName) {
         driver.findElement(userNameInput).sendKeys(userName);
     }
-    @Step("setPassword")
+    @Step("setting password = {secret_sauce}")
     public void setPassword(String password) {
         driver.findElement(passwordInput).sendKeys(password);
     }
-    @Step("clickLoginButton")
+    @Step("click Login Button")
     public void clickLoginButton() {
         driver.findElement(loginButton).click();
     }
-    @Step("isErrorMessageDisplayed")
     public boolean isErrorMessageDisplayed() {
         return driver.findElement(errorMessege).isDisplayed();
     }
-    @Step("getErrorMessageDisplayed")
     public String getErrorMessageDisplayed() {
         return driver.findElement(errorMessege).getText();
     }
-    @Step("isLoginPageDisplayed")
     public boolean isLoginPageDisplayed() {
         return driver.findElement(loginPage).isDisplayed();
     }

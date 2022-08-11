@@ -1,6 +1,5 @@
 package tests;
 
-import io.qameta.allure.Attachment;
 import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
