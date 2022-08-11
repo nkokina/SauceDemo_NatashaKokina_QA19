@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -20,27 +21,27 @@ public class LoginPage extends BasePage {
         setPassword(password);
         clickLoginButton();
     }
-
+@Step("setUserName")
     public void setUserName(String userName) {
         driver.findElement(userNameInput).sendKeys(userName);
     }
-
+    @Step("setPassword")
     public void setPassword(String password) {
         driver.findElement(passwordInput).sendKeys(password);
     }
-
+    @Step("clickLoginButton")
     public void clickLoginButton() {
         driver.findElement(loginButton).click();
     }
-
+    @Step("isErrorMessageDisplayed")
     public boolean isErrorMessageDisplayed() {
         return driver.findElement(errorMessege).isDisplayed();
     }
-
+    @Step("getErrorMessageDisplayed")
     public String getErrorMessageDisplayed() {
         return driver.findElement(errorMessege).getText();
     }
-
+    @Step("isLoginPageDisplayed")
     public boolean isLoginPageDisplayed() {
         return driver.findElement(loginPage).isDisplayed();
     }

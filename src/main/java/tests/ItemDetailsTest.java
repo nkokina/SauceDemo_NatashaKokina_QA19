@@ -1,5 +1,7 @@
 package tests;
 
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -19,6 +21,8 @@ public class ItemDetailsTest extends BaseTest {
     }
 
     @Test(groups = {"Smoke"})
+    @Description("Verify Item Name And Price On Details Page Test")
+    @Attachment(value = "screenshot", type = "image/png")
     public void verifyItemNameAndPriceOnDetailsPage() {
         loginPage.login(USERNAME, PASSWORD);
         productsPage.openItemByName(PRODUCT_NAME);
@@ -31,6 +35,8 @@ public class ItemDetailsTest extends BaseTest {
     }
 
     @Test(groups = {"Smoke"})
+    @Description("Check The Added Item In The Cart Test")
+    @Attachment(value = "screenshot", type = "image/png")
     public void checkTheAddedItemInTheCart() {
         loginPage.login(USERNAME, PASSWORD);
         productsPage.openItemByName(PRODUCT_NAME);
@@ -45,6 +51,8 @@ public class ItemDetailsTest extends BaseTest {
     }
 
     @Test(groups = {"Smoke"}, dataProvider = "inventoryItemsTestData")
+    @Description("Inventory Items Test")
+    @Attachment(value = "screenshot", type = "image/png")
     public void inventoryItemsTest(String nameItem, String descriptionItem, String priceItem) {
         loginPage.login(USERNAME, PASSWORD);
         Assert.assertTrue(productsPage.getProductName(nameItem), "Product name is wrong");

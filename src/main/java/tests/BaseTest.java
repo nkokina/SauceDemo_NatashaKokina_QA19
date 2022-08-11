@@ -27,7 +27,7 @@ public class BaseTest {
     protected LoginPage loginPage;
     protected ProductsPage productsPage;
 
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(alwaysRun = true, description = "driver")
     public void setUp(ITestContext testContext) throws Exception {
         String browserName = System.getProperty("browser", "chrome");
         if (browserName.equals("chrome")) {
@@ -45,9 +45,10 @@ public class BaseTest {
         driver.manage().window().maximize();
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
+        testContext.setAttribute("driver", driver);
     }
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true, description = "navigate")
     public void openSauceDemo() {
         driver.get("https://www.saucedemo.com");
     }
@@ -59,7 +60,7 @@ public class BaseTest {
         ((JavascriptExecutor) driver).executeScript("window.sessionStorage.clear();");
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass(alwaysRun = true, description = "Close driver")
     public void tearDown() {
         driver.quit();
     }
