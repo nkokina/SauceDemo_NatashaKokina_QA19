@@ -16,17 +16,17 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    @Step("setting userName = {standard_user},setting password = {secret_sauce},click Login Button")
+    @Step("setting userName = {userName},setting password = {password},click Login Button")
     public void login(String userName, String password) {
         setUserName(userName);
         setPassword(password);
         clickLoginButton();
     }
-    @Step("setting userName = {standard_user}")
+    @Step("setting userName = {userName}")
     public void setUserName(String userName) {
         driver.findElement(userNameInput).sendKeys(userName);
     }
-    @Step("setting password = {secret_sauce}")
+    @Step("setting password = {password}")
     public void setPassword(String password) {
         driver.findElement(passwordInput).sendKeys(password);
     }
