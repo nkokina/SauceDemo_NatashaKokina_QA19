@@ -6,32 +6,28 @@ import org.testng.annotations.Test;
 import pages.CheckoutCompletePage;
 import pages.CheckoutOverviewPage;
 import pages.CheckoutPage;
-import pages.ItemDetailsPage;
 
 public class CheckoutOverviewTests extends BaseTest {
     private final String SUMMARY_TEX_LABEL = "Tax: $2.40";
-
     private final String ITEM_TOTAL = "Item total: $29.99";
     private final String SUMMARY_TOTAL_LABEL = "Total: $32.39";
     CheckoutPage checkoutPage;
     CheckoutOverviewPage checkoutOverviewPage;
-    ItemDetailsPage itemDetailsPage;
     CheckoutCompletePage checkoutCompletePage;
 
-    @BeforeMethod
+    @BeforeMethod (alwaysRun = true)
     public void initialise() {
         checkoutPage = new CheckoutPage(driver);
-        itemDetailsPage = new ItemDetailsPage(driver);
         checkoutOverviewPage = new CheckoutOverviewPage(driver);
         checkoutCompletePage = new CheckoutCompletePage(driver);
     }
 
-    @Test
+    @Test(groups = {"Regression"})
     public void conformityOfTheGoodsInTheOrderTest() {
         loginPage.login(USERNAME, PASSWORD);
-        itemDetailsPage.clickAddToCartButton();
+        productsPage.clickAddToCartButton(PRODUCT_NAME);
         checkoutPage.clickingOnTheShoppingCart();
-        checkoutPage.continuePage(FIRSTNAME, LASTNAME, POSTALCODE);
+        checkoutPage.continuePage(FIRSTNAME, LASTNAME, POSTAL_CODE);
         Assert.assertEquals(checkoutOverviewPage.getItemNameInCheckout(), PRODUCT_NAME,
                 "The title of the book does not correspond");
         Assert.assertEquals(checkoutOverviewPage.getItemPriceInCheckout(), PRODUCT_PRICE,
@@ -40,12 +36,12 @@ public class CheckoutOverviewTests extends BaseTest {
                 "The description of the book does not correspond");
     }
 
-    @Test
+    @Test (groups = {"Regression"})
     public void totalAmountInTheOrderTest() {
         loginPage.login(USERNAME, PASSWORD);
-        itemDetailsPage.clickAddToCartButton();
+        productsPage.clickAddToCartButton(PRODUCT_NAME);
         checkoutPage.clickingOnTheShoppingCart();
-        checkoutPage.continuePage(FIRSTNAME, LASTNAME, POSTALCODE);
+        checkoutPage.continuePage(FIRSTNAME, LASTNAME, POSTAL_CODE);
         Assert.assertEquals(checkoutOverviewPage.getSummarySubtotalLabel(),
                 ITEM_TOTAL, " Item total not corresponds is price item");
         Assert.assertEquals(checkoutOverviewPage.getSummaryTaxLabel(),
@@ -54,12 +50,12 @@ public class CheckoutOverviewTests extends BaseTest {
                 "Total not corresponds");
     }
 
-    @Test
+    @Test (groups = {"Smoke"})
     public void gToEndPageTest() {
         loginPage.login(USERNAME, PASSWORD);
-        itemDetailsPage.clickAddToCartButton();
+        productsPage.clickAddToCartButton(PRODUCT_NAME);
         checkoutPage.clickingOnTheShoppingCart();
-        checkoutPage.continuePage(FIRSTNAME, LASTNAME, POSTALCODE);
+        checkoutPage.continuePage(FIRSTNAME, LASTNAME, POSTAL_CODE);
         checkoutOverviewPage.clickFinishButton();
         Assert.assertTrue(checkoutCompletePage.isCheckoutCompleteDisplayed(),
                 "Going to the finish page didn't work");

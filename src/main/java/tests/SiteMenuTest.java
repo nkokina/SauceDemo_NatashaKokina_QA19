@@ -9,17 +9,16 @@ import pages.ItemDetailsPage;
 
 public class SiteMenuTest extends BaseTest {
 
-
     ItemDetailsPage itemDetailsPage;
     BasketPage basketPage;
 
-    @BeforeClass
+    @BeforeClass (alwaysRun = true)
     public void initialise() {
         itemDetailsPage = new ItemDetailsPage(driver);
         basketPage = new BasketPage(driver);
     }
 
-    @Test
+    @Test(groups = {"Regression"})
     public void checkingTheSiteMenu() {
         loginPage.login("standard_user", "secret_sauce");
         basketPage.clickingOnTheShoppingCart();
@@ -31,13 +30,13 @@ public class SiteMenuTest extends BaseTest {
         Assert.assertTrue(loginPage.isLoginPageDisplayed(),
                 "There was no transition to the registration page");
         loginPage.login("standard_user", "secret_sauce");
-        itemDetailsPage.clickAddToCartButton();
+       productsPage.clickAddToCartButton(PRODUCT_NAME);
         basketPage.clickMenuPage();
         basketPage.clickResetMenu();
         Assert.assertTrue(itemDetailsPage.isRemoveButtonDisplayed(),
                 "Reset app state, did not occur");
         basketPage.clickAboutMenu();
-        Assert.assertEquals(basketPage.isAboutMenuDisplayed(), "https://saucelabs.com",
+        Assert.assertEquals(itemDetailsPage.getPageUrl(), "https://saucelabs.com/",
                 "There was no transition to the site https://saucelabs.com");
     }
 }
