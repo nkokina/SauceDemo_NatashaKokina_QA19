@@ -4,7 +4,6 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.opera.OperaDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
@@ -33,8 +32,8 @@ public class BaseTest {
         if (browserName.equals("chrome")) {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
-            ChromeOptions option = new ChromeOptions();
-            option.addArguments("--headless");
+//            ChromeOptions option = new ChromeOptions();
+//            option.addArguments("--headless");
         } else if (browserName.equals("opera")) {
             WebDriverManager.operadriver().setup();
             driver = new OperaDriver();
@@ -45,7 +44,8 @@ public class BaseTest {
         driver.manage().window().maximize();
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
-        testContext.setAttribute("driver", driver);
+        testContext.setAttribute("driver",driver);
+
     }
 
     @BeforeMethod(alwaysRun = true, description = "navigate")

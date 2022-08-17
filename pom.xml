@@ -17,9 +17,6 @@
         <seleniumJavaVersion>3.141.59</seleniumJavaVersion>
         <testNgVersion>7.6.0</testNgVersion>
         <webdrivermanagerVersion>5.2.0</webdrivermanagerVersion>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
         <aspectj.version>1.9.8</aspectj.version>
 
     </properties>
@@ -44,14 +41,11 @@
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
             <version>2.18.1</version>
-            <scope>test</scope>
+<!--            <scope>test</scope>-->
         </dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-java-commons</artifactId>
-            <version>2.18.1</version>
-            <scope>compile</scope>
-        </dependency>
+
+
+
 
     </dependencies>
 
@@ -67,6 +61,8 @@
                     </systemProperties>
                     <suiteXmlFiles>
                         <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                        <negativeXmlFile>${negativeXmlFile}</negativeXmlFile>
+                        <regressionXmlFile>${regressionXmlFile}</regressionXmlFile>
                     </suiteXmlFiles>
                     <argLine>
                         -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar -Xmx256m
@@ -88,6 +84,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>
