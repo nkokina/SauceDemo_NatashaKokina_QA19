@@ -27,7 +27,7 @@ public class LoginTests extends BaseTest {
         loginPage.clickLoginButton();
         AllureUtils.attachScreenshot(driver);
         Assert.assertTrue(loginPage.isErrorMessageDisplayed());
-        Assert.assertEquals(loginPage.getErrorMessageDisplayed(),
+        Assert.assertEquals(loginPage.getErrorMessageDisplayed().isEmpty(), false,
                 expectedErrorMessage);
     }
 

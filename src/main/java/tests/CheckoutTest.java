@@ -37,7 +37,7 @@ public class CheckoutTest extends BaseTest {
         checkoutPage.clickingOnTheShoppingCart();
         checkoutPage.continuePage("", "", "");
         Assert.assertTrue(checkoutPage.isErrorMessageDisplayed(), "Error message is not displayed");
-        Assert.assertEquals(checkoutPage.getErrorMessageDisplayed(),
+        Assert.assertEquals(checkoutPage.getErrorMessageDisplayed().isEmpty(), false,
                 "Need to fill in blank lines");
 
     }
