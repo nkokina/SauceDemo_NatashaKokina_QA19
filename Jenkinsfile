@@ -1,9 +1,8 @@
 pipeline {
     agent any
-// triggers{
-// cron('0 1 * * *')}
-
-
+    triggers {
+        cron('0 1 * * *')
+    }
 
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
@@ -12,19 +11,28 @@ pipeline {
 
     parameters {
      gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+    gitParameter suiteName: 'suite_name'
+    gitParameter browser: 'BROWSER'
     }
 
   stages {
         stage('Run tests') {
             steps {
                 // Get some code from a GitHub repository
-                git branch: "${params.BRANCH}", url: 'https://github.com/nkokina/SauceDemo_NatashaKokina_QA19.git'
+                git branch: "${params.BRANCH}", "${params.suite_name}", ${params.BROWSER} url: 'https://github.com/nkokina/SauceDemo_NatashaKokina_QA19.git'
 
                 // Run Maven on a Unix agent.
                bat "mvn -Dmaven.test.failure.ignore=true clean test"
 
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+
+            script {
+               def browsers = ['chrome', 'opera']
+                   for (int i = 0; i < browsers.size(); ++i) {
+                     echo "Testing the ${browsers[i]} browser"
+                     }
+               }
             }
 
             post {
