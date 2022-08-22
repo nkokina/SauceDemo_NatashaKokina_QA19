@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     triggers {
-        cron('5 * * * *')
+    cron('5 * * * *')
     }
 
     tools {
@@ -12,9 +12,10 @@ pipeline {
 
 
     parameters {
+
          string(defaultValue: 'smokeTest.xml', name: 'SUITE_NAME')
 
-         choice(name: 'BROWSER', choices: ['Chrome', 'Opera'], description: 'browser')
+//          choice(choices: ['Chrome', 'Opera'], description: 'browser', name: 'BROWSER',)
 
          gitParameter(branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH')
    }
@@ -23,7 +24,7 @@ pipeline {
         stage('Run tests') {
             steps {
 
-               choice: "${params.BROWSER}",
+//                choice: "${params.BROWSER}",
                 // Get some code from a GitHub repository
                 git branch: "${params.BRANCH}",
 
