@@ -45,10 +45,6 @@
             <version>2.18.1</version>
 <!--            <scope>test</scope>-->
         </dependency>
-
-
-
-
     </dependencies>
 
     <build>
@@ -62,6 +58,8 @@
                         <browser>chrome</browser>
                     </systemProperties>
                     <suiteXmlFiles>
+                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
                         <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
                     </suiteXmlFiles>
                     <argLine>

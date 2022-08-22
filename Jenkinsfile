@@ -23,7 +23,7 @@ pipeline {
         stage('Run tests') {
             steps {
 
-                 choices: "${params.BROWSER}",
+                "${params.BROWSER}",
                 // Get some code from a GitHub repository
                 git branch: "${params.BRANCH}",
 
