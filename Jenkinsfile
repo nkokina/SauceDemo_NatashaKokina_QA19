@@ -24,7 +24,7 @@ pipeline {
         stage('Run tests') {
             steps {
 
-//                choice: "${params.BROWSER}",
+                echo "${params.BROWSER}",
                 // Get some code from a GitHub repository
                 git branch: "${params.BRANCH}",
 
