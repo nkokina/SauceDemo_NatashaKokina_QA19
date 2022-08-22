@@ -1,5 +1,6 @@
 pipeline {
     agent any
+
     triggers {
         cron('5 * * * *')
     }
@@ -9,22 +10,27 @@ pipeline {
         maven "M3"
     }
 
+
     parameters {
-     gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
-//     gitParameter suiteName: 'suite_name'
-//     gitParameter browser: 'chrome'
-    }
+         string(defaultValue:'smokeTest.xml', name: 'SUITE_NAME')
+
+         choice(name: 'BROWSER', choices: ['Chrome', 'Opera'], description: 'browser')
+
+         gitParameter(branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH')
+   }
 
   stages {
         stage('Run tests') {
             steps {
+
+                 choices: "${params.BROWSER}",
                 // Get some code from a GitHub repository
                 git branch: "${params.BRANCH}",
-//                  "${params.suite_name}", ${params.BROWSER}
+
                  url: 'https://github.com/nkokina/SauceDemo_NatashaKokina_QA19.git'
 
                 // Run Maven on a Unix agent.
-               bat "mvn -Dmaven.test.failure.ignore=true clean test"
+               bat "mvn -Dmaven.test.failure.ignore=true -DsuiteXmlFile=${params.SUITE_NAME} clean test"
 
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
