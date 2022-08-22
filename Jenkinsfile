@@ -12,7 +12,7 @@ pipeline {
 
 
     parameters {
-         string(defaultValue:'smokeTest.xml', name: 'SUITE_NAME')
+         string(defaultValue: 'smokeTest.xml', name: 'SUITE_NAME')
 
          choice(name: 'BROWSER', choices: ['Chrome', 'Opera'], description: 'browser')
 
