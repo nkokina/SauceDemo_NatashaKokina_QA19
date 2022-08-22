@@ -13,9 +13,9 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>18</maven.compiler.source>
         <maven.compiler.target>18</maven.compiler.target>
-        <regressionSuiteFile>${project.build.testOutputDirectory}/regressionTest.xml</regressionSuiteFile>
-        <negativeSuiteFile>${project.build.testOutputDirectory}/negativeTest.xml</negativeSuiteFile>
-        <smokeSuiteFile>${project.build.testOutputDirectory}/smokeTest.xml</smokeSuiteFile>
+        <regressionSuiteFile>regressionTest.xml</regressionSuiteFile>
+        <negativeSuiteFile>negativeTest.xml</negativeSuiteFile>
+        <smokeSuiteFile>smokeTest.xml</smokeSuiteFile>
         <defaultSuiteFiles>${regressionSuiteFile},${smokeSuiteFile},${negativeSuiteFile}</defaultSuiteFiles>
         <suiteFile>${defaultSuiteFiles}</suiteFile>
         <seleniumJavaVersion>3.141.59</seleniumJavaVersion>
