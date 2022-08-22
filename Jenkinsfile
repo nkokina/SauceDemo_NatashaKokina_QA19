@@ -1,7 +1,7 @@
 pipeline {
     agent any
     triggers {
-        cron('0 1 * * *')
+        cron('5 * * * *')
     }
 
     tools {
@@ -11,15 +11,17 @@ pipeline {
 
     parameters {
      gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
-    gitParameter suiteName: 'suite_name'
-    gitParameter browser: 'BROWSER'
+//     gitParameter suiteName: 'suite_name'
+//     gitParameter browser: 'chrome'
     }
 
   stages {
         stage('Run tests') {
             steps {
                 // Get some code from a GitHub repository
-                git branch: "${params.BRANCH}", "${params.suite_name}", ${params.BROWSER} url: 'https://github.com/nkokina/SauceDemo_NatashaKokina_QA19.git'
+                git branch: "${params.BRANCH}",
+//                  "${params.suite_name}", ${params.BROWSER}
+                 url: 'https://github.com/nkokina/SauceDemo_NatashaKokina_QA19.git'
 
                 // Run Maven on a Unix agent.
                bat "mvn -Dmaven.test.failure.ignore=true clean test"
