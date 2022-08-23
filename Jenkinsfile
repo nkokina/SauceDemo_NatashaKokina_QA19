@@ -11,21 +11,21 @@ pipeline {
     }
 
 
-    parameters {[
+    parameters {
 
-//          choice(choices: ['Chrome', 'Opera'], description: 'browser', name: 'BROWSER')
+         choice(choices: ['Chrome', 'Opera'], description: 'browser', name: 'BROWSER')
 
          gitParameter(branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH')
 
          string(name: 'SUITE_NAME', defaultValue: 'smokeTest.xml')
-  ]}
+  }
 
 
   stages {
         stage('Run tests') {
             steps {
 
-//                 browser: "${params.BROWSER}",
+               echo "Choice: ${params.BROWSER}"
                 // Get some code from a GitHub repository
                 git branch: "${params.BRANCH}",
 
