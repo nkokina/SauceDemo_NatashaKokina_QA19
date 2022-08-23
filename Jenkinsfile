@@ -15,7 +15,7 @@ pipeline {
 
          string(defaultValue: 'smokeTest.xml', name: 'SUITE_NAME')
 
-         choice(choices: ['Chrome', 'Opera'], description: 'browser', name: 'BROWSER')
+//          choice(choices: ['Chrome', 'Opera'], description: 'browser', name: 'BROWSER')
 
          gitParameter(branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH')
    }
@@ -24,14 +24,14 @@ pipeline {
         stage('Run tests') {
             steps {
 
-                browser: "${params.BROWSER}",
+//                 browser: "${params.BROWSER}",
                 // Get some code from a GitHub repository
                 git branch: "${params.BRANCH}",
 
                  url: 'https://github.com/nkokina/SauceDemo_NatashaKokina_QA19.git'
 
                 // Run Maven on a Unix agent.
-               bat "mvn -Dmaven.test.failure.ignore=true -DsuiteXmlFile=${params.SUITE_NAME} clean test"
+               bat "mvn -Dmaven.test.failure.ignore=true -DsuiteXmlFile=${SUITE_NAME} clean test"
 
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
