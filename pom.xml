@@ -62,9 +62,9 @@
                     </systemProperties>
                     <suiteXmlFiles>
 <!--                       <suiteXmlFile>${suiteFile}</suiteXmlFile> -->
-  <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
- <suiteXmlFile>negativeTest.xml</suiteXmlFile>
- <suiteXmlFile>regressionTest.xml</suiteXmlFile>
+                           <suiteXmlFile>smokeTest.xml</suiteXmlFile>
+                           <suiteXmlFile>negativeTest.xml</suiteXmlFile>
+                           <suiteXmlFile>regressionTest.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <argLine>
                         -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar -Xmx256m
