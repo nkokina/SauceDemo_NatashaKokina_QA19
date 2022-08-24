@@ -19,7 +19,7 @@ public class SiteMenuTest extends BaseTest {
     }
 
     @Test(groups = {"Regression"})
-    public void checkingTheSiteMenu() throws InterruptedException {
+    public void checkingTheSiteMenu(){
         loginPage.login("standard_user", "secret_sauce");
         basketPage.clickingOnTheShoppingCart();
         basketPage.clickMenuPage();

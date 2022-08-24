@@ -62,7 +62,7 @@
                     </systemProperties>
                     <suiteXmlFiles>
 <!--                       <suiteXmlFile>${suiteFile}</suiteXmlFile> -->
-                           <suiteXmlFile>smokeTest.xml</suiteXmlFile>
+                           <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
                            <suiteXmlFile>negativeTest.xml</suiteXmlFile>
                            <suiteXmlFile>regressionTest.xml</suiteXmlFile>
                     </suiteXmlFiles>
