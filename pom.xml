@@ -13,11 +13,12 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>18</maven.compiler.source>
         <maven.compiler.target>18</maven.compiler.target>
-        <regressionSuiteFile>regressionTest.xml</regressionSuiteFile>
+<!--         <regressionSuiteFile>regressionTest.xml</regressionSuiteFile>
         <negativeSuiteFile>negativeTest.xml</negativeSuiteFile>
         <smokeSuiteFile>smokeTest.xml</smokeSuiteFile>
-        <defaultSuiteFiles>${regressionSuiteFile},${smokeSuiteFile},${negativeSuiteFile}</defaultSuiteFiles>
-        <suiteFile>${defaultSuiteFiles}</suiteFile>
+        <defaultSuiteFiles>${regressionSuiteFile},${smokeSuiteFile},${negativeSuiteFile}</defaultSuiteFiles> 
+        <suiteFile>${defaultSuiteFiles}</suiteFile> -->
+               <suiteXmlFile>smokeTest.xml</suiteXmlFile>
         <seleniumJavaVersion>3.141.59</seleniumJavaVersion>
         <testNgVersion>7.6.0</testNgVersion>
         <webdrivermanagerVersion>5.2.0</webdrivermanagerVersion>
@@ -60,7 +61,10 @@
                         <browser>chrome</browser>
                     </systemProperties>
                     <suiteXmlFiles>
-                        <suiteXmlFile>${suiteFile}</suiteXmlFile>
+<!--                       <suiteXmlFile>${suiteFile}</suiteXmlFile> -->
+  <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+ <suiteXmlFile>negativeTest.xml</suiteXmlFile>
+ <suiteXmlFile>regressionTest.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <argLine>
                         -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar -Xmx256m
