@@ -30,7 +30,7 @@ public class CheckoutTest extends BaseTest {
 
     }
 
-    @Test(groups = {"Regression", "Negative"})
+    @Test(groups = {"Negative"})
     public void negativeCheckoutEmptyLinesTest() {
         loginPage.login(USERNAME, PASSWORD);
         productsPage.clickAddToCartButton(PRODUCT_NAME);

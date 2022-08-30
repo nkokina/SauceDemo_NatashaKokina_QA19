@@ -19,7 +19,7 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(productsPage.isProductsPageHeaderDisplayed());
     }
 
-    @Test(groups = {"Regression", "Negative"}, dataProvider = "negativeLoginTestData", description = "Test")
+    @Test(groups = {"Negative"}, dataProvider = "negativeLoginTestData", description = "Test")
     @Description ("negative Login Test")
        public void negativeLoginTest(String userName, String Password, String expectedErrorMessage) {
         loginPage.setUserName(userName);
