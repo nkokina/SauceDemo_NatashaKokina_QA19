@@ -25,7 +25,7 @@ pipeline {
                 git branch: "${params.BRANCH}", url: 'https://github.com/nkokina/SauceDemo_NatashaKokina_QA19.git'
 
                 // Run Maven on a Unix agent.
-               bat "mvn -Dmaven.test.failure.ignore=true -P ${params.SUITE_NAME} -Dbrowser=${params.BROWSER} clean test"
+               bat "mvn -Dmaven.test.failure.ignore=true -Dsurefire.suiteXmlFiles=${params.SUITE_NAME} -Dbrowser=${params.BROWSER} clean test"
 // bat "mvn -Dmaven.test.failure.ignore=true -DsuiteXmlFile=${params.SUITE_NAME} -Dbrowser=${params.BROWSER} clean test"
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
