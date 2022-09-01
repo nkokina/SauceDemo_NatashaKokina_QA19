@@ -12,7 +12,7 @@ pipeline {
 
     parameters {
          choice(choices: ['chrome', 'opera'], description: 'browser', name: 'BROWSER')
-         string(name: 'SUITE_NAME', defaultValue: '\'smokeTest.xml\'')
+         string(name: 'SUITE_NAME', defaultValue: 'smokeTest.xml')
          gitParameter(branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH')
   }
 
