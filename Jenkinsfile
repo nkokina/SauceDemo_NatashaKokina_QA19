@@ -11,7 +11,7 @@ pipeline {
     }
 
     parameters {
-         choice(choices: ['Chrome', 'Opera'], description: 'browser', name: 'BROWSER')
+         choice(choices: ['\'Chrome\'', '\'Opera\''], description: 'browser', name: 'BROWSER')
          string(name: 'SUITE_NAME', defaultValue: '\'smokeTest.xml\'')
          gitParameter(branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH')
   }
